@@ -1,6 +1,6 @@
 # Aplicación Spring Boot
 
-Esta es una aplicación desarrollada con Spring Boot que proporciona funcionalidades relacionadas con la gestión y actualización remota del firmware empleado en los dispositivos IoT desarrollados por Enrique Bernardo González Vázquez para el proyecto CUTEnergy. Es compatible con la placa ESP32 y ESP8266 
+Esta es una aplicación desarrollada con Spring Boot que proporciona funcionalidades relacionadas con la gestión y envío de felicitaciones automáticas para los docentes del centro universitario de Tonalá.        
 
 ## Requisitos previos
 
