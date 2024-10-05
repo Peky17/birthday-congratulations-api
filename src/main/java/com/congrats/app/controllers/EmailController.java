@@ -1,17 +1,9 @@
 package com.congrats.app.controllers;
 
-import java.io.IOException;
-
-import com.congrats.app.responses.ApiResponse;
-import com.congrats.app.services.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import jakarta.mail.MessagingException;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/mail")

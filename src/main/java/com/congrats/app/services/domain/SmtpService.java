@@ -1,4 +1,4 @@
-package com.congrats.app.services;
+package com.congrats.app.services.domain;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -20,7 +19,7 @@ import jakarta.mail.internet.MimeMessage;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class EmailService {
+public class SmtpService {
     @Value("${spring.mail.username}")
     private String myEmail;
 
@@ -29,7 +28,7 @@ public class EmailService {
 
     private final RestTemplate restTemplate;
 
-    public EmailService(RestTemplate restTemplate) {
+    public SmtpService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
