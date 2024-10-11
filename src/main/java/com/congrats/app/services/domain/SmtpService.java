@@ -50,7 +50,6 @@ public class SmtpService {
 
     private String buildHtmlToMe(String name, String to, String subject, String text) throws IOException {
         ClassPathResource resource = new ClassPathResource("static/templateToMe.html");
-        @SuppressWarnings("resource")
         String template = new BufferedReader(
                 new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))
                 .lines()
