@@ -21,26 +21,37 @@ public class AdministratorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AdministratorEntity> getAdministratorById(@PathVariable Long id) {
+    public ResponseEntity<AdministratorEntity> getAdministratorById(
+            @PathVariable Long id
+    ) {
         Optional<AdministratorEntity> administrator = administratorService.getAdministratorById(id);
         return administrator.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<AdministratorEntity> createAdministrator(@RequestBody AdministratorEntity administrator) {
+    public ResponseEntity<AdministratorEntity> createAdministrator(
+            @RequestBody AdministratorEntity administrator
+    ) {
         AdministratorEntity savedAdministrator = administratorService.saveAdministrator(administrator);
         return ResponseEntity.ok(savedAdministrator);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdministratorEntity> updateAdministrator(@PathVariable Long id, @RequestBody AdministratorEntity administratorDetails) {
+    public ResponseEntity<AdministratorEntity> updateAdministrator(
+            @RequestHeader("Authorization") String bearerToken,
+            @PathVariable Long id,
+            @RequestBody AdministratorEntity administratorDetails
+    ) {
         AdministratorEntity updatedAdministrator = administratorService.updateAdministrator(id, administratorDetails);
         return ResponseEntity.ok(updatedAdministrator);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdministrator(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAdministrator(
+            @RequestHeader("Authorization") String bearerToken,
+            @PathVariable Long id
+    ) {
         administratorService.deleteAdministrator(id);
         return ResponseEntity.noContent().build();
     }
