@@ -32,63 +32,30 @@ public class SmtpService {
         this.restTemplate = restTemplate;
     }
 
-    /* HTML Email Template for sending email to me */
-    @Async
-    public void sendHtmlMailToMe(String name, String to, String text)
-            throws MessagingException, IOException {
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-        String subject = "New client message";
-        String htmlBody = buildHtmlToMe(name, to, subject, text);
-
-        helper.setTo(myEmail);
-        helper.setSubject(subject);
-        helper.setText(htmlBody, true);
-
-        javaMailSender.send(message);
-    }
-
-    private String buildHtmlToMe(String name, String to, String subject, String text) throws IOException {
-        ClassPathResource resource = new ClassPathResource("static/templateToMe.html");
-        String template = new BufferedReader(
-                new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))
-                .lines()
-                .collect(Collectors.joining("\n"));
-
-        return template
-                .replace("{{name}}", name)
-                .replace("{{to}}", to)
-                .replace("{{subject}}", subject)
-                .replace("{{text}}", text);
-
-    }
-
     /* HTML Email Template for sending email to client */
     @Async
     public void sendHtmlMailToClient(String name, String to, String subject, String text)
             throws MessagingException, IOException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-        String htmlBody = buildHtmlToClient(subject, text, name);
-
+        String htmlBody = buildHtmlTemplate(subject, text, name);
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(htmlBody, true);
-
         javaMailSender.send(message);
     }
 
-    private String buildHtmlToClient(String subject, String text, String name) throws IOException {
-        ClassPathResource resource = new ClassPathResource("static/templateToClient.html");
+    private String buildHtmlTemplate(String subject, String text, String name) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/emailTemplate.html");
         @SuppressWarnings("resource")
         String template = new BufferedReader(
                 new InputStreamReader(resource.getInputStream(), StandardCharsets.UTF_8))
                 .lines()
                 .collect(Collectors.joining("\n"));
-
-        return template.replace("{{subject}}", subject)
-                .replace("{{text}}", text)
-                .replace("{{name}}", name);
+        return template
+                .replace("{{SUBJECT}}", subject)
+                .replace("{{TEXT}}", text)
+                .replace("{{NAME}}", name)
+                .replace("{{DATE}}", java.time.LocalDate.now().toString());
     }
 }

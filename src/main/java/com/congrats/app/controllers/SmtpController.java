@@ -38,8 +38,8 @@ class TemplateController {
         return "forward:/templateToClient.html";
     }
 
-    @GetMapping("/email-to-me")
-    public String toMeTemplate() {
-        return "forward:/templateToMe.html";
+    @GetMapping("/email-template")
+    public String emailTemplate() {
+        return "forward:/emailTemplate.html";
     }
 }
