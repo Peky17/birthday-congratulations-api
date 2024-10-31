@@ -18,8 +18,8 @@ public class SmtpController {
     private SmtpService emailService;
 
     @PostMapping("/sendEmailToTeacher")
-    public void sendHtmlToClient(@RequestBody ContactDTO contact) throws MessagingException, IOException {
-        emailService.sendHtmlMailToClient(contact.getName(), contact.getTo(), contact.getSubject(),
+    public void sendHtmlMailWithAttachment(@RequestBody ContactDTO contact) throws MessagingException, IOException {
+        emailService.sendHtmlMailWithAttachment(contact.getName(), contact.getTo(), contact.getSubject(),
                 contact.getMessage());
     }
 
@@ -33,11 +33,6 @@ public class SmtpController {
 @Controller
 @RequestMapping("/templates")
 class TemplateController {
-    @GetMapping("/email-cliente")
-    public String clientTemplate() {
-        return "forward:/templateToClient.html";
-    }
-
     @GetMapping("/email-template")
     public String emailTemplate() {
         return "forward:/emailTemplate.html";
