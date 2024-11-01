@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- <meta charset="UTF-8" /> -->
+    <!-- Character encoding -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <!-- Responsive design -->
+    <title>Feliz Cumpleaños</title>
+    <style type="text/css">
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            color: black;
+            display: table;
+            font-family: Georgia, serif;
+            font-size: 24px;
+            text-align: center;
+        }
+        .container {
+            border: 20px solid tan;
+            width: 750px;
+            height: auto; /* Cambiado a auto para ajustar al contenido */
+            display: table-cell;
+            vertical-align: middle;
+            padding: 20px; /* Añadido padding para mayor espacio interno */
+        }
+        .logo img {
+            width: 350px; /* Ajusta el tamaño del logo según sea necesario */
+            height: auto; /* Mantener la proporción */
+        }
+        .title {
+            color: tan;
+            font-size: 48px; /* Título destacado */
+            margin: 20px 0; /* Margen superior e inferior */
+        }
+        .recipient {
+            font-size: 36px; /* Tamaño para el nombre */
+            font-style: italic; /* Estilo itálico para el nombre */
+            margin: 20px auto;
+            border-bottom: 2px solid black; /* Línea inferior */
+            width: 400px; /* Ancho fijo */
+        }
+        .text {
+            margin: 20px; /* Espacio alrededor del texto */
+        }
+        .signature {
+            margin: 40px 0; /* Margen para la sección de firma */
+        }
+        .signature-name {
+            font-weight: bold; /* Para resaltar el nombre de la firma */
+        }
+        .date {
+            margin-top: 20px; /* Espacio superior para la fecha */
+        }
+        .signature img {
+            width: 200px; /* Ajustado el tamaño de la firma */
+            height: auto; /* Mantener la proporción */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">¡Feliz Cumpleaños!</div>
+
+    <div class="recipient">{{NAME}}</div>
+
+    <div class="text">
+        <p>{{TEXT}}</p>
+    </div>
+
+    <br />
+    <!-- Signature -->
+    <div class="signature">
+        <img
+                src="https://i.postimg.cc/sxcv3BY5/signature.png"
+                alt="Signature Image"
+        />
+        <p class="signature-name">Alfredo Peña Ramos</p>
+        <p>Rector del Centro Universitario de Tonalá</p>
+    </div>
+
+    <div class="logo">
+        <img src="https://i.postimg.cc/PfRtkHcK/logo-cutonala.png" alt="Logo" />
+    </div>
+
+    <br />
+    <!-- Date -->
+    <div class="date">
+        <p>{{DATE}}</p>
+    </div>
+</div>
+</body>
+</html>

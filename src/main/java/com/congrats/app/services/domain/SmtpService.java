@@ -28,20 +28,17 @@ public class SmtpService {
         this.javaMailSender = javaMailSender;
     }
 
-    /*
-    * CREAR UN TEMPLATE PARA EMAIL HTMLY OTRO PARA EL PDF
-    * EL DEL CORREO NO DEBE LLEVAR FIRMA
-    * EL DEL PDF DEBE LLEVAR FIRMA
-    * */
-
     public void sendHtmlMailWithAttachment(String name, String to, String subject, String text)
             throws MessagingException, IOException, DocumentException {
-        // 1. Crear el HTML con datos dinámicos
-        String htmlContent = loadHtmlTemplate(Map.of("name", name,
+        // 1. Crear el HTML con datos dinámicos para enviar por email
+        String htmlContent = loadHtmlTemplateToSend(Map.of("name", name,
                 "text", text, "date", java.time.LocalDate.now().toString()));
-        // 2. Convertir HTML a PDF
-        File pdfFile = generatePdfFromHtml(htmlContent);
-        // 3. Crear y enviar el correo con el PDF adjunto
+        // 2. Crear HTML con datos dinámicos para generar PDF y adjuntar
+        String htmlToPDFContent = loadHtmlToPDFTemplate(Map.of("name", name,
+                "text", text, "date", java.time.LocalDate.now().toString()));
+        // 3. Convertir HTML a PDF
+        File pdfFile = generatePdfFromHtml(htmlToPDFContent);
+        // 4. Crear y enviar el correo con el PDF adjunto
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
         helper.setTo(to);
@@ -53,13 +50,22 @@ public class SmtpService {
         Files.deleteIfExists(pdfFile.toPath());
     }
 
-    private String loadHtmlTemplate(Map<String, String> variables) throws IOException {
+    private String loadHtmlTemplateToSend(Map<String, String> variables) throws IOException {
         ClassPathResource resource = new ClassPathResource("static/emailTemplate.html");
         String template = new String(Files.readAllBytes(Paths.get(resource.getURI())), StandardCharsets.UTF_8);
         for (Map.Entry<String, String> entry : variables.entrySet()) {
             template = template.replace("{{" + entry.getKey().toUpperCase() + "}}", entry.getValue());
         }
         return template;
+    }
+
+    private String loadHtmlToPDFTemplate(Map<String, String> variables) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/pdfTemplate.html");
+        String templatePDF = new String(Files.readAllBytes(Paths.get(resource.getURI())), StandardCharsets.UTF_8);
+        for (Map.Entry<String, String> entry : variables.entrySet()) {
+            templatePDF = templatePDF.replace("{{" + entry.getKey().toUpperCase() + "}}", entry.getValue());
+        }
+        return templatePDF;
     }
 
     private File generatePdfFromHtml(String htmlContent) throws IOException, DocumentException {

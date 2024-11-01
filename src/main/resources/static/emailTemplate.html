@@ -3,133 +3,127 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Style -->
     <style>
-        /* Estilos para centrar el contenido */
+        /* Ajustes para el tamaño de la hoja sin márgenes */
+        html,
         body {
             font-family: Arial, sans-serif;
             color: #333;
-            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            background-color: #e7e7e7;
         }
 
-        /* Contenedor principal con ancho fijo */
+        /* Contenedor adaptado a tamaño carta */
         .container {
-            max-width: 600px;
-            width: 100%;
-            border: 1px solid #ccc;
+            width: 216mm;
+            height: 279mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             background-color: #fff;
+            padding: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: para un efecto de sombra */
         }
 
-        /* Header sin margen en la parte superior */
-        .header {
-            text-align: center;
+        /* Encabezado, contenido y pie de página sin márgenes adicionales */
+        .header,
+        .content,
+        .footer {
             margin: 0;
+            padding: 10px;
         }
 
+        /* Encabezado */
         .header img {
             max-width: 100%;
             height: auto;
         }
 
-        /* Contenido centrado */
+        /* Contenido */
         .content {
             text-align: justify;
-            padding: 20px;
         }
 
         .title {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .recipient {
             font-size: 18px;
             font-weight: bold;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
+        /* Sección de firma */
         .signature {
             text-align: center;
-            margin: 20px 0;
+            margin: 10px 0;
+        }
+
+        .signature img {
+            max-width: 200px;
+            height: auto;
         }
 
         .signature-name {
             font-size: 18px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
+        /* Fecha */
         .date {
             text-align: center;
             font-size: 16px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
-        /* Footer también centrado */
-        .footer {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .footer img,
-        .signature img {
+        /* Footer */
+        .footer img {
             max-width: 100%;
             height: auto;
         }
     </style>
 </head>
 <body>
-<!-- Contenedor principal -->
 <div class="container">
-    <!-- Header -->
-    <div class="header">
-        <img
-                src="https://i.postimg.cc/zvRg5Ddj/header-img.png"
-                alt="Header Image"
-        />
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-        <p class="title">Feliz Cumpleaños</p>
-        <p class="recipient">{{NAME}}</p>
-        <p>{{TEXT}}</p>
-    </div>
-
-    <!-- Signature -->
-    <div class="signature">
-        <img
-                src="https://i.postimg.cc/sxcv3BY5/signature.png"
-                alt="Signature Image"
-                width="200px"
-                height="140px"
-                style="text-align: center"
-        />
-        <p class="signature-name">Alfredo Peña Ramos</p>
-        <p>Rector del Centro Universitario de Tonalá</p>
-    </div>
-
-    <!-- Date -->
-    <div class="date">
-        <p>{{DATE}}</p>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <img
-                src="https://i.postimg.cc/t7QVg0wH/footer-img.png"
-                alt="Footer Image"
-        />
+    <div>
+        <!-- Header -->
+        <div class="header">
+            <img
+                    src="https://i.postimg.cc/zvRg5Ddj/header-img.png"
+                    alt="Header Image"
+            />
+        </div>
+        <br /><br />
+        <!-- Content -->
+        <div class="content">
+            <p class="title">¡Feliz Cumpleaños!</p>
+            <p class="recipient">{{NAME}}</p>
+            <p style="text-align: center">{{TEXT}}</p>
+        </div>
+        <br />
+        <!-- Date -->
+        <div class="date">
+            <p>{{DATE}}</p>
+        </div>
+        <br /><br />
+        <!-- Footer -->
+        <div class="footer">
+            <img
+                    src="https://i.postimg.cc/t7QVg0wH/footer-img.png"
+                    alt="Footer Image"
+            />
+        </div>
     </div>
 </div>
 </body>
