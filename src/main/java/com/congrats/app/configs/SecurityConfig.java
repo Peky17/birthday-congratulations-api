@@ -1,6 +1,6 @@
 package com.congrats.app.configs;
 
-import com.congrats.app.components.JwtAuthenticationFilter;
+import com.congrats.app.filters.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

@@ -1,8 +1,6 @@
 package com.congrats.app.models.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "CustomTemplate")
 public class TemplateEntity {
@@ -11,6 +9,8 @@ public class TemplateEntity {
     private Long id;
     private String title;
     private String subtitle;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String logoSrc;
     private String rectorName;

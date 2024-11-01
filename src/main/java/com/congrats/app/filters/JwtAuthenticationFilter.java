@@ -1,6 +1,5 @@
-package com.congrats.app.components;
+package com.congrats.app.filters;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.congrats.app.services.auth.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

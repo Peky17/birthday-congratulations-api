@@ -43,6 +43,11 @@ public class TemplateService {
         return templateRepository.findById(id);
     }
 
+    // Get the latest template
+    public List<TemplateEntity> getLatestTemplate() {
+        return templateRepository.findTopByOrderByIdDesc();
+    }
+
     // Delete template by ID
     public void deleteTemplate(Long id) {
         templateRepository.deleteById(id);
