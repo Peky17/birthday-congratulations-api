@@ -2,129 +2,41 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
+    <!-- Character encoding -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        /* Ajustes para el tamaño de la hoja sin márgenes */
-        html,
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Contenedor adaptado a tamaño carta */
-        .container {
-            width: 216mm;
-            height: 279mm;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color: #fff;
-            padding: 10px;
-            box-sizing: border-box;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: para un efecto de sombra */
-        }
-
-        /* Encabezado, contenido y pie de página sin márgenes adicionales */
-        .header,
-        .content,
-        .footer {
-            margin: 0;
-            padding: 10px;
-        }
-
-        /* Encabezado */
-        .header img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Contenido */
-        .content {
-            text-align: justify;
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .recipient {
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 5px;
-        }
-
-        /* Sección de firma */
-        .signature {
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .signature img {
-            max-width: 200px;
-            height: auto;
-        }
-
-        .signature-name {
-            font-size: 18px;
-            margin-top: 5px;
-        }
-
-        /* Fecha */
-        .date {
-            text-align: center;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        /* Footer */
-        .footer img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    <!-- Responsive design -->
+    <title>Feliz Cumpleaños</title>
 </head>
-<body>
-<div class="container">
-    <div>
-        <!-- Header -->
-        <div class="header">
-            <img
-                    src="https://i.postimg.cc/zvRg5Ddj/header-img.png"
-                    alt="Header Image"
-            />
-        </div>
-        <br /><br />
-        <!-- Content -->
-        <div class="content">
-            <p class="title">¡Feliz Cumpleaños!</p>
-            <p class="recipient">{{NAME}}</p>
-            <p style="text-align: center">{{TEXT}}</p>
-        </div>
-        <br />
-        <!-- Date -->
-        <div class="date">
-            <p>{{DATE}}</p>
-        </div>
-        <br /><br />
-        <!-- Footer -->
-        <div class="footer">
-            <img
-                    src="https://i.postimg.cc/t7QVg0wH/footer-img.png"
-                    alt="Footer Image"
-            />
-        </div>
-    </div>
-</div>
+<body style="margin: 0; padding: 0; font-family: Georgia, serif; color: black; font-size: 24px; text-align: center;">
+<table width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">
+    <tr>
+        <td align="center">
+            <table width="750" cellpadding="20" style="border: 20px solid tan; border-collapse: collapse;">
+                <tr>
+                    <td align="center" style="text-align: center;">
+                        <!-- Título -->
+                        <h1 style="color: tan; font-size: 48px; margin: 20px 0;">¡Feliz Cumpleaños!</h1>
+
+                        <!-- Nombre del destinatario -->
+                        <div style="font-size: 36px; font-style: italic; margin: 20px auto; border-bottom: 2px solid black; width: 400px;">
+                            {{NAME}}
+                        </div>
+
+                        <!-- Mensaje -->
+                        <p style="margin: 20px;">{{TEXT}}</p>
+
+                        <!-- Logo -->
+                        <div style="margin: 20px 0;">
+                            <img src="https://i.postimg.cc/PfRtkHcK/logo-cutonala.png" alt="Logo" width="350" style="display: block; margin: 0 auto;" />
+                        </div>
+
+                        <!-- Fecha -->
+                        <p style="margin-top: 20px;">{{DATE}}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
