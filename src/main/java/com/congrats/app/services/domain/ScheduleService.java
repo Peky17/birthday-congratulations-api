@@ -35,7 +35,7 @@ public class ScheduleService {
                         teacher.getName(),
                         teacher.getEmail(),
                         "¡Feliz cumpleaños! " + teacher.getName(),
-                        templateData.get(0).getDescription()
+                        template.getDescription()
                 );
             }
         }
