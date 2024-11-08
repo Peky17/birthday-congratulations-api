@@ -1,5 +1,6 @@
 package com.congrats.app.controllers;
 
+import com.congrats.app.models.dto.EmailDTO;
 import com.congrats.app.models.entities.EmailEntity;
 import com.congrats.app.services.domain.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,13 @@ public class EmailController {
     private EmailService emailService;
 
     @GetMapping
-    public List<EmailEntity> getAllEmails() {
+    public List<EmailDTO> getAllEmails() {
         return emailService.getAllEmails();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmailEntity> getEmailById(@PathVariable Long id) {
-        Optional<EmailEntity> email = emailService.getEmailById(id);
+    public ResponseEntity<EmailDTO> getEmailById(@PathVariable Long id) {
+        Optional<EmailDTO> email = emailService.getEmailById(id);
         return email.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

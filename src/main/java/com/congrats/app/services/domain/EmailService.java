@@ -1,5 +1,6 @@
 package com.congrats.app.services.domain;
 
+import com.congrats.app.models.dto.EmailDTO;
 import com.congrats.app.models.entities.EmailEntity;
 import com.congrats.app.repositories.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,18 +8,20 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmailService {
+
     @Autowired
     private EmailRepository emailRepository;
 
-    public List<EmailEntity> getAllEmails() {
-        return emailRepository.findAll();
+    public List<EmailDTO> getAllEmails() {
+        return emailRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
-    public Optional<EmailEntity> getEmailById(Long id) {
-        return emailRepository.findById(id);
+    public Optional<EmailDTO> getEmailById(Long id) {
+        return emailRepository.findById(id).map(this::mapToDTO);
     }
 
     public EmailEntity createEmail(EmailEntity email) {
@@ -40,5 +43,14 @@ public class EmailService {
             return true;
         }
         return false;
+    }
+
+    private EmailDTO mapToDTO(EmailEntity email) {
+        return new EmailDTO(
+                email.getId(),
+                email.getDate(),
+                email.getMessage(),
+                email.getTeacher() != null ? email.getTeacher().getId() : null
+        );
     }
 }
