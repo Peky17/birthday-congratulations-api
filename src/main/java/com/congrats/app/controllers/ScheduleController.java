@@ -16,7 +16,7 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @PostMapping("/check-teacher-birthdays")
+    @PostMapping("/api/v1/check-teacher-birthdays")
     public ResponseEntity<String> checkBirthdays() {
         try {
             scheduleService.checkTeacherBirthdays();

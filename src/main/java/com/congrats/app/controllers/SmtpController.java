@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/mail")
+@RequestMapping("/api/v1/mail")
 public class SmtpController {
     @Autowired
     private SmtpService emailService;

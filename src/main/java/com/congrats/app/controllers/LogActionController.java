@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/log-actions")
+@RequestMapping("api/v1/log-actions")
 public class LogActionController {
 
     @Autowired

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/administrators")
+@RequestMapping("/api/v1/administrators")
 public class AdministratorController {
     @Autowired
     private AdministratorService administratorService;
