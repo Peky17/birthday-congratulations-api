@@ -4,6 +4,7 @@ import com.congrats.app.services.domain.ScheduleService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/schedule")
+@RequestMapping("/api/v1/schedule")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @PostMapping("/api/v1/check-teacher-birthdays")
+    @PostMapping("/check-teacher-birthdays")
     public ResponseEntity<String> checkBirthdays() {
         try {
             scheduleService.checkTeacherBirthdays();

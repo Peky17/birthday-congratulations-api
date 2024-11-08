@@ -1,6 +1,7 @@
 package com.congrats.app.controllers;
 
 import com.congrats.app.models.dto.ContactDTO;
+import com.congrats.app.services.domain.EmailService;
 import com.congrats.app.services.domain.SmtpService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ import java.io.IOException;
 @RequestMapping("/api/v1/mail")
 public class SmtpController {
     @Autowired
-    private SmtpService emailService;
+    private SmtpService smtpService;
 
     @PostMapping("/sendEmailToTeacher")
     public void sendHtmlMailWithAttachment(@RequestBody ContactDTO contact) throws MessagingException, IOException {
-        emailService.sendHtmlMailWithAttachment(contact.getName(), contact.getTo(), contact.getSubject(),
+        smtpService.sendHtmlMailWithAttachment(contact.getName(), contact.getTo(), contact.getSubject(),
                 contact.getMessage());
     }
 
