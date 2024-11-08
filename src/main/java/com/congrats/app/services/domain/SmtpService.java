@@ -1,6 +1,8 @@
 package com.congrats.app.services.domain;
 
+import com.congrats.app.models.entities.TemplateEntity;
 import com.lowagie.text.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,13 +16,15 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class SmtpService {
     @Value("${spring.mail.username}")
     private String myEmail;
-
+    @Autowired
+    private TemplateService templateService;
     private final JavaMailSender javaMailSender;
 
     public SmtpService(JavaMailSender javaMailSender) {
@@ -33,8 +37,15 @@ public class SmtpService {
         String htmlContent = loadHtmlTemplateToSend(Map.of("name", name,
                 "text", text, "date", java.time.LocalDate.now().toString()));
         // 2. Crear HTML con datos dinámicos para generar PDF y adjuntar
-        String htmlToPDFContent = loadHtmlToPDFTemplate(Map.of("name", name,
-                "text", text, "date", java.time.LocalDate.now().toString()));
+        List<TemplateEntity> templateData = templateService.getLatestTemplate();
+        TemplateEntity template = templateData.get(0);
+        String htmlToPDFContent = loadHtmlToPDFTemplate(Map.of(
+                "name", name,
+                "signature", template.getRectorSignatureSrc(),
+                "rector", template.getRectorName(),
+                "text", text, "date",
+                java.time.LocalDate.now().toString()
+        ));
         // 3. Convertir HTML a PDF
         File pdfFile = generatePdfFromHtml(htmlToPDFContent);
         // 4. Crear y enviar el correo con el PDF adjunto
